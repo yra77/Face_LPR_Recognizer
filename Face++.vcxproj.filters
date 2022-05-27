@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Face.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="View_Result.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="View_Image.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Face.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Face.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image_LPR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Symbol_Recog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Add_Mouse_Region.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Write_To_File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LPR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FaceDetectRecog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="View_Face.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Face++.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Face++.aps" />
+    <None Include="x64\Release\tessdata\eng.traineddata" />
+    <None Include="x64\Release\tessdata\ukr.traineddata" />
+    <None Include="x64\Release\tessdata\rus.traineddata" />
+    <None Include="x64\Release\tessdata\enm.traineddata" />
+    <None Include="x64\Release\tessdata\osd.traineddata" />
+    <None Include="x64\Release\tessdata\configs\alto" />
+    <None Include="x64\Release\tessdata\configs\ambigs.train" />
+    <None Include="x64\Release\tessdata\configs\api_config" />
+    <None Include="x64\Release\tessdata\configs\bazaar" />
+    <None Include="x64\Release\tessdata\configs\bigram" />
+    <None Include="x64\Release\tessdata\configs\box.train" />
+    <None Include="x64\Release\tessdata\configs\box.train.stderr" />
+    <None Include="x64\Release\tessdata\configs\digits" />
+    <None Include="x64\Release\tessdata\configs\get.images" />
+    <None Include="x64\Release\tessdata\configs\hocr" />
+    <None Include="x64\Release\tessdata\configs\inter" />
+    <None Include="x64\Release\tessdata\configs\kannada" />
+    <None Include="x64\Release\tessdata\configs\linebox" />
+    <None Include="x64\Release\tessdata\configs\logfile" />
+    <None Include="x64\Release\tessdata\configs\lstm.train" />
+    <None Include="x64\Release\tessdata\configs\lstmbox" />
+    <None Include="x64\Release\tessdata\configs\lstmdebug" />
+    <None Include="x64\Release\tessdata\configs\makebox" />
+    <None Include="x64\Release\tessdata\configs\Makefile.am" />
+    <None Include="x64\Release\tessdata\configs\pdf" />
+    <None Include="x64\Release\tessdata\configs\quiet" />
+    <None Include="x64\Release\tessdata\configs\rebox" />
+    <None Include="x64\Release\tessdata\configs\strokewidth" />
+    <None Include="x64\Release\tessdata\configs\tsv" />
+    <None Include="x64\Release\tessdata\configs\txt" />
+    <None Include="x64\Release\tessdata\configs\unlv" />
+    <None Include="x64\Release\tessdata\configs\wordstrbox" />
+    <None Include="x64\Release\tessdata\tessconfigs\batch" />
+    <None Include="x64\Release\tessdata\tessconfigs\batch.nochop" />
+    <None Include="x64\Release\tessdata\tessconfigs\Makefile.am" />
+    <None Include="x64\Release\tessdata\tessconfigs\matdemo" />
+    <None Include="x64\Release\tessdata\tessconfigs\msdemo" />
+    <None Include="x64\Release\tessdata\tessconfigs\nobatch" />
+    <None Include="x64\Release\tessdata\tessconfigs\segdemo" />
+    <None Include="x64\Release\tessdata\Makefile.am" />
+    <None Include="x64\Release\tessdata\eng.user-patterns" />
+    <None Include="x64\Release\tessdata\eng.user-words" />
+    <None Include="tessdata\configs\alto" />
+    <None Include="tessdata\configs\ambigs.train" />
+    <None Include="tessdata\configs\api_config" />
+    <None Include="tessdata\configs\bazaar" />
+    <None Include="tessdata\configs\bigram" />
+    <None Include="tessdata\configs\box.train" />
+    <None Include="tessdata\configs\box.train.stderr" />
+    <None Include="tessdata\configs\digits" />
+    <None Include="tessdata\configs\get.images" />
+    <None Include="tessdata\configs\hocr" />
+    <None Include="tessdata\configs\inter" />
+    <None Include="tessdata\configs\kannada" />
+    <None Include="tessdata\configs\linebox" />
+    <None Include="tessdata\configs\logfile" />
+    <None Include="tessdata\configs\lstm.train" />
+    <None Include="tessdata\configs\lstmbox" />
+    <None Include="tessdata\configs\lstmdebug" />
+    <None Include="tessdata\configs\makebox" />
+    <None Include="tessdata\configs\Makefile.am" />
+    <None Include="tessdata\configs\pdf" />
+    <None Include="tessdata\configs\quiet" />
+    <None Include="tessdata\configs\rebox" />
+    <None Include="tessdata\configs\strokewidth" />
+    <None Include="tessdata\configs\tsv" />
+    <None Include="tessdata\configs\txt" />
+    <None Include="tessdata\configs\unlv" />
+    <None Include="tessdata\configs\wordstrbox" />
+    <None Include="tessdata\tessconfigs\batch" />
+    <None Include="tessdata\tessconfigs\batch.nochop" />
+    <None Include="tessdata\tessconfigs\Makefile.am" />
+    <None Include="tessdata\tessconfigs\matdemo" />
+    <None Include="tessdata\tessconfigs\msdemo" />
+    <None Include="tessdata\tessconfigs\nobatch" />
+    <None Include="tessdata\tessconfigs\segdemo" />
+    <None Include="tessdata\eng.traineddata" />
+    <None Include="tessdata\eng.user-patterns" />
+    <None Include="tessdata\eng.user-words" />
+    <None Include="tessdata\enm.traineddata" />
+    <None Include="tessdata\Makefile.am" />
+    <None Include="tessdata\osd.traineddata" />
+    <None Include="tessdata\rus.traineddata" />
+    <None Include="tessdata\ukr.traineddata" />
+    <None Include="x64\Release\models\Resize\EDSR_x2.pb" />
+    <None Include="x64\Release\models\Resize\EDSR_x3.pb" />
+    <None Include="x64\Release\models\Resize\EDSR_x4.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN_x2.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN_x3.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN_x4.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN-small_x3.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN-small_x4.pb" />
+    <None Include="x64\Release\models\deploy.prototxt" />
+    <None Include="x64\Release\models\dt3.caffemodel" />
+    <None Include="x64\Release\models\dt3.prototxt" />
+    <None Include="x64\Release\models\frozen_east_text_detection.pb" />
+    <None Include="x64\Release\models\Kazemi_model.dat" />
+    <None Include="x64\Release\models\lbfmodel.yaml" />
+    <None Include="x64\Release\models\LPR_Detect_6000.caffemodel" />
+    <None Include="x64\Release\models\LPR_Detect_6000.prototxt" />
+    <None Include="x64\Release\models\opencv_face_detector.pbtxt" />
+    <None Include="x64\Release\models\opencv_face_detector_uint8.pb" />
+    <None Include="x64\Release\models\res10_300x300_ssd_iter_140000_fp16.caffemodel" />
+    <None Include="x64\Release\models\Short_2000.caffemodel" />
+    <None Include="x64\Release\models\Short_9324.caffemodel" />
+    <None Include="x64\Release\models\Short_9324.prototxt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="x64\Release\models\haarcascade_russian_plate_number.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="x64\Release\tessdata\pdf.ttf" />
+    <Font Include="tessdata\pdf.ttf" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
+    <Keyword>QtVS_v301</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <EnableASAN>false</EnableASAN>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">
+    <QtMsBuild>$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <ExecutablePath>$(VC_ExecutablePath_x64);$(CommonExecutablePath);</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <ExecutablePath>$(VC_ExecutablePath_x64);$(CommonExecutablePath);</ExecutablePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;</LibraryPath>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtInstall>aa</QtInstall>
+    <QtModules>core;gui;network;networkauth;opengl;openglextensions;quickwidgets;uitools;webchannel;webengine;widgets;winextras;xml;xmlpatterns</QtModules>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtInstall>aa</QtInstall>
+    <QtModules>core;gui;network;networkauth;opengl;openglextensions;quickwidgets;uitools;webchannel;webengine;widgets;winextras;xml;xmlpatterns</QtModules>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);$(OpenCV)\..\..\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(OpenCV)\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);opencv_world411.lib;opencv_world411d.lib;</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);C:/Users/User/install_OpenCV/include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:/Users/User/install_OpenCV/x64\vc16\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);opencv_xphoto450.lib;opencv_xobjdetect450.lib;opencv_ximgproc450.lib;opencv_xfeatures2d450.lib;opencv_videostab450.lib;opencv_videoio450.lib;opencv_video450.lib;opencv_tracking450.lib;opencv_text450.lib;opencv_surface_matching450.lib;opencv_superres450.lib;opencv_structured_light450.lib;opencv_stitching450.lib;opencv_stereo450.lib;opencv_shape450.lib;opencv_saliency450.lib;opencv_rgbd450.lib;opencv_reg450.lib;opencv_rapid450.lib;opencv_quality450.lib;opencv_plot450.lib;opencv_photo450.lib;opencv_phase_unwrapping450.lib;opencv_optflow450.lib;opencv_objdetect450.lib;opencv_ml450.lib;opencv_mcc450.lib;opencv_line_descriptor450.lib;opencv_intensity_transform450.lib;opencv_imgproc450.lib;opencv_imgcodecs450.lib;opencv_img_hash450.lib;opencv_highgui450.lib;opencv_hfs450.lib;opencv_gapi450.lib;opencv_fuzzy450.lib;opencv_flann450.lib;opencv_features2d450.lib;opencv_face450.lib;opencv_dpm450.lib;opencv_dnn450.lib;opencv_dnn_superres450.lib;opencv_dnn_objdetect450.lib;opencv_datasets450.lib;opencv_core450.lib;opencv_ccalib450.lib;opencv_calib3d450.lib;opencv_bioinspired450.lib;opencv_bgsegm450.lib;opencv_aruco450.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Face.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Face.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Face.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Add_Mouse_Region.h" />
+    <ClInclude Include="FaceDetectRecog.h" />
+    <ClInclude Include="Image_LPR.h" />
+    <ClInclude Include="LPR.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Symbol_Recog.h" />
+    <ClInclude Include="View_Face.h" />
+    <ClInclude Include="Write_To_File.h" />
+    <QtMoc Include="View_Image.h" />
+    <QtMoc Include="View_Result.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Face++.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Face++.aps" />
+    <None Include="tessdata\configs\alto" />
+    <None Include="tessdata\configs\ambigs.train" />
+    <None Include="tessdata\configs\api_config" />
+    <None Include="tessdata\configs\bazaar" />
+    <None Include="tessdata\configs\bigram" />
+    <None Include="tessdata\configs\box.train" />
+    <None Include="tessdata\configs\box.train.stderr" />
+    <None Include="tessdata\configs\digits" />
+    <None Include="tessdata\configs\get.images" />
+    <None Include="tessdata\configs\hocr" />
+    <None Include="tessdata\configs\inter" />
+    <None Include="tessdata\configs\kannada" />
+    <None Include="tessdata\configs\linebox" />
+    <None Include="tessdata\configs\logfile" />
+    <None Include="tessdata\configs\lstm.train" />
+    <None Include="tessdata\configs\lstmbox" />
+    <None Include="tessdata\configs\lstmdebug" />
+    <None Include="tessdata\configs\makebox" />
+    <None Include="tessdata\configs\Makefile.am" />
+    <None Include="tessdata\configs\pdf" />
+    <None Include="tessdata\configs\quiet" />
+    <None Include="tessdata\configs\rebox" />
+    <None Include="tessdata\configs\strokewidth" />
+    <None Include="tessdata\configs\tsv" />
+    <None Include="tessdata\configs\txt" />
+    <None Include="tessdata\configs\unlv" />
+    <None Include="tessdata\configs\wordstrbox" />
+    <None Include="tessdata\eng.traineddata" />
+    <None Include="tessdata\eng.user-patterns" />
+    <None Include="tessdata\eng.user-words" />
+    <None Include="tessdata\enm.traineddata" />
+    <None Include="tessdata\Makefile.am" />
+    <None Include="tessdata\osd.traineddata" />
+    <None Include="tessdata\rus.traineddata" />
+    <None Include="tessdata\tessconfigs\batch" />
+    <None Include="tessdata\tessconfigs\batch.nochop" />
+    <None Include="tessdata\tessconfigs\Makefile.am" />
+    <None Include="tessdata\tessconfigs\matdemo" />
+    <None Include="tessdata\tessconfigs\msdemo" />
+    <None Include="tessdata\tessconfigs\nobatch" />
+    <None Include="tessdata\tessconfigs\segdemo" />
+    <None Include="tessdata\ukr.traineddata" />
+    <None Include="x64\Release\models\deploy.prototxt" />
+    <None Include="x64\Release\models\dt3.caffemodel" />
+    <None Include="x64\Release\models\dt3.prototxt" />
+    <None Include="x64\Release\models\frozen_east_text_detection.pb" />
+    <None Include="x64\Release\models\Kazemi_model.dat" />
+    <None Include="x64\Release\models\lbfmodel.yaml" />
+    <None Include="x64\Release\models\LPR_Detect_6000.caffemodel" />
+    <None Include="x64\Release\models\LPR_Detect_6000.prototxt" />
+    <None Include="x64\Release\models\opencv_face_detector.pbtxt" />
+    <None Include="x64\Release\models\opencv_face_detector_uint8.pb" />
+    <None Include="x64\Release\models\res10_300x300_ssd_iter_140000_fp16.caffemodel" />
+    <None Include="x64\Release\models\Resize\EDSR_x2.pb" />
+    <None Include="x64\Release\models\Resize\EDSR_x3.pb" />
+    <None Include="x64\Release\models\Resize\EDSR_x4.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN-small_x3.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN-small_x4.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN_x2.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN_x3.pb" />
+    <None Include="x64\Release\models\Resize\FSRCNN_x4.pb" />
+    <None Include="x64\Release\models\Short_2000.caffemodel" />
+    <None Include="x64\Release\models\Short_9324.caffemodel" />
+    <None Include="x64\Release\models\Short_9324.prototxt" />
+    <None Include="x64\Release\tessdata\configs\alto" />
+    <None Include="x64\Release\tessdata\configs\ambigs.train" />
+    <None Include="x64\Release\tessdata\configs\api_config" />
+    <None Include="x64\Release\tessdata\configs\bazaar" />
+    <None Include="x64\Release\tessdata\configs\bigram" />
+    <None Include="x64\Release\tessdata\configs\box.train" />
+    <None Include="x64\Release\tessdata\configs\box.train.stderr" />
+    <None Include="x64\Release\tessdata\configs\digits" />
+    <None Include="x64\Release\tessdata\configs\get.images" />
+    <None Include="x64\Release\tessdata\configs\hocr" />
+    <None Include="x64\Release\tessdata\configs\inter" />
+    <None Include="x64\Release\tessdata\configs\kannada" />
+    <None Include="x64\Release\tessdata\configs\linebox" />
+    <None Include="x64\Release\tessdata\configs\logfile" />
+    <None Include="x64\Release\tessdata\configs\lstm.train" />
+    <None Include="x64\Release\tessdata\configs\lstmbox" />
+    <None Include="x64\Release\tessdata\configs\lstmdebug" />
+    <None Include="x64\Release\tessdata\configs\makebox" />
+    <None Include="x64\Release\tessdata\configs\Makefile.am" />
+    <None Include="x64\Release\tessdata\configs\pdf" />
+    <None Include="x64\Release\tessdata\configs\quiet" />
+    <None Include="x64\Release\tessdata\configs\rebox" />
+    <None Include="x64\Release\tessdata\configs\strokewidth" />
+    <None Include="x64\Release\tessdata\configs\tsv" />
+    <None Include="x64\Release\tessdata\configs\txt" />
+    <None Include="x64\Release\tessdata\configs\unlv" />
+    <None Include="x64\Release\tessdata\configs\wordstrbox" />
+    <None Include="x64\Release\tessdata\eng.traineddata" />
+    <None Include="x64\Release\tessdata\eng.user-patterns" />
+    <None Include="x64\Release\tessdata\eng.user-words" />
+    <None Include="x64\Release\tessdata\enm.traineddata" />
+    <None Include="x64\Release\tessdata\Makefile.am" />
+    <None Include="x64\Release\tessdata\osd.traineddata" />
+    <None Include="x64\Release\tessdata\rus.traineddata" />
+    <None Include="x64\Release\tessdata\tessconfigs\batch" />
+    <None Include="x64\Release\tessdata\tessconfigs\batch.nochop" />
+    <None Include="x64\Release\tessdata\tessconfigs\Makefile.am" />
+    <None Include="x64\Release\tessdata\tessconfigs\matdemo" />
+    <None Include="x64\Release\tessdata\tessconfigs\msdemo" />
+    <None Include="x64\Release\tessdata\tessconfigs\nobatch" />
+    <None Include="x64\Release\tessdata\tessconfigs\segdemo" />
+    <None Include="x64\Release\tessdata\ukr.traineddata" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="x64\Release\models\haarcascade_russian_plate_number.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="tessdata\pdf.ttf" />
+    <Font Include="x64\Release\tessdata\pdf.ttf" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
