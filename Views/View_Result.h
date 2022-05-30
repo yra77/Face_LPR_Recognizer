@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "Write_To_File.h"
+#include "IO_Files/File_W.h"
 
 #include <QDialog>
 #include <QLabel>
@@ -132,8 +132,7 @@ public:
             str += '\n';
         }
 
-        Write_To_File toFile;
-        toFile.To_File(str, desckTop_Path);
+        File_W::Auto_To_File(str, desckTop_Path);
     }
 
 
@@ -141,6 +140,7 @@ public:
     {
         for (int i = 0; i < this->tableWidget->rowCount(); ++i)
                 this->tableWidget->removeRow(i);
+
                 this->tableWidget->setRowCount(0);
       // this->tableWidget->clear();
     }

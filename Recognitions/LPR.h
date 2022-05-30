@@ -3,14 +3,12 @@
 
 #pragma once
 
-#include "Face.h"
-#include "Symbol_Recog.h"
-#include "Add_Mouse_Region.h"
-#include "View_Result.h"
+#include "Main_View.h"
+#include "Recognitions/Symbol_Recog.h"
+#include "Views/Add_Region_View.h"
+#include "Views/View_Result.h"
 
 #include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <windows.h>
 #include <string>
 #include <vector>
@@ -141,13 +139,15 @@ public:
 		else
 		{
 			path = Open_File_Dialog();
+
 			if (path.empty())
 				return;
+
 			capture.open(path);
 		}
 	
 		// Выбираем и рисуем Регион
-		Add_Mouse_Region aMR;
+		Add_Region_View aMR;
 		
 		roi = aMR.Start(path, siZe, x11, x22, y11, y22);//задаём регион
 
@@ -156,7 +156,7 @@ public:
 			return;
 
 		if (!capture.isOpened())
-			MessageBox(0, L"Error when reading steam_avi", L"", MB_OK | MB_ICONERROR | MB_APPLMODAL);
+			MessageBox(0, L"Error when reading stream avi", L"", MB_OK | MB_ICONERROR | MB_APPLMODAL);
 
 
 		capture >> frame;
@@ -222,10 +222,14 @@ private:
 	{
 		int start = 0;
 		int empty_img = 0;
+
 		sR.Start(pathEXE, 0.7f);
+
 		std::vector < std::pair<string, float>> res;
+
 		string caffeConfig_Proto = pathEXE + "models/LPR_Detect_6000.prototxt";
 		string caffeWeight_Model = pathEXE + "models/LPR_Detect_6000.caffemodel";
+
 		Net net = cv::dnn::readNetFromCaffe(caffeConfig_Proto, caffeWeight_Model);
 
 		while (1)
@@ -369,27 +373,10 @@ private:
 
 	string Open_File_Dialog()
 	{
-		OPENFILENAME ofn = { 0 };
-		TCHAR szFile[260] = { 0 };
-
-		ofn.lStructSize = sizeof(ofn);
-		ofn.hwndOwner = NULL;
-		ofn.lpstrFile = szFile;
-		ofn.nMaxFile = sizeof(szFile);
-		ofn.lpstrFilter = L"Image Files (*.mp4)\0*.mp4;\0;";
-		ofn.nFilterIndex = 1;
-		ofn.lpstrFileTitle = NULL;
-		ofn.nMaxFileTitle = 0;
-		ofn.lpstrInitialDir = NULL;
-		ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 
 		std::string fileName;
-		if (GetOpenFileName(&ofn) == TRUE)
-		{
-			std::wstring arr_w(szFile);
-			fileName = std::string(arr_w.begin(), arr_w.end());
-		}
-		else
+
+		if (!File_R::OpenFileDialog(L"Image Files (*.mp4)\0*.mp4;\0;", fileName))
 		{
 			if (ui.LPR_Button->text() == "Dis LPR")
 			{
@@ -398,7 +385,6 @@ private:
 			}
 
 			MessageBox(0, L"ERROR file read", L"", MB_OK | MB_ICONERROR | MB_APPLMODAL);
-
 		}
 
 		return fileName;

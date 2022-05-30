@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "Face.h"
+#include "Main_View.h"
 #include "ui_Face.h"
-//#include "View_Result.h"
-#include "View_Face.h"
+#include "IO_Files/File_R.h"
+#include "Views/View_Face.h"
 
 #include <string>
 #include <fstream>
@@ -75,14 +75,6 @@ private:
 		this->path_EXE = pathEXE;
 		this->desctopPath = desctop_Path;
 
-		if (!std::filesystem::exists(desctopPath + "Foto Base Recognize"))
-		{
-			std::filesystem::create_directories(desctopPath + "Foto Base Recognize/Recognize Base");
-			std::filesystem::create_directories(desctopPath + "Foto Base Recognize/Foto Base");
-			std::filesystem::create_directories(desctopPath + "Foto Base Recognize/Human Base");
-			std::filesystem::create_directories(desctopPath + "Foto Base Recognize/Data_Base_Text");
-		}
-
 		//for recognizer
 		vector<Mat> images;
 		vector<int> labels;
@@ -112,6 +104,7 @@ private:
 	
 		string tensorflowConfigFile = path_EXE + "models/opencv_face_detector.pbtxt";
 		string tensorflowWeightFile = path_EXE + "models/opencv_face_detector_uint8.pb";
+
 		Net net = cv::dnn::readNetFromTensorflow(tensorflowWeightFile, tensorflowConfigFile);
 
 		while (1)
@@ -216,7 +209,6 @@ private:
 				int x2 = static_cast<int>(detectionMat.at<float>(i, 5) * frameWidth + 30);
 				int y2 = static_cast<int>(detectionMat.at<float>(i, 6) * frameHeight + 35);
 
-				//прямоугольник вокруг лица
 				//rectangle(frameOpenCVDNN, Point(x1, y1), Point(x2, y2), Scalar(0, 255, 0), 2, 4);				
 				Rect t = Rect(Point(x1, y1), Point(x2, y2));
 
@@ -288,54 +280,40 @@ private:
 		return result_message;
 	}
 
+
 	bool Read_csv(vector<Mat>& images, vector<int>& labels)
 	{
 
-		string regExprStr("([0-9]+)\\.png");
-		regex rgx(regExprStr);
-
-		std::ifstream fileRead;
-		fileRead.open(desctopPath + "Foto Base Recognize/Data_Base_Text/Base.txt");
-
+		string pathTXT(desctopPath + "Foto Base Recognize/Data_Base_Text/Base.txt");
 		string folder(desctopPath + "Foto Base Recognize/Human Base/*.png");
 		vector<string> filenames;
+		string regExprStr("([0-9]+)\\.png");
 
-		cv::glob(folder, filenames, false);
+		regex rgx(regExprStr);
 
-		if (filenames.empty() || !fileRead.is_open())
+		File_R::Read_Png_Folder(folder, filenames);
+
+		if (filenames.empty() || !File_R::Read_TXT(pathTXT, data_To_Humans, countName))
 		{
 			return false;
 		}
 
 		for (int i = 0; i < filenames.size(); i++)
 		{
-			images.push_back(imread(filenames[i], IMREAD_GRAYSCALE));
 			smatch smatch;
 
 			if (regex_search(filenames[i], smatch, rgx))
 			{
 				string ss = smatch[0];
 
-				//if (ss[0] == '0')
-				//	ss = ss[1];
-				//else
-				//	ss = ss[0] + ss[1];
-
 				labels.push_back(stoi(ss));
+				images.push_back(File_R::Read_Png_Grey(filenames[i]));
 			}
 		}
 
-		while (!fileRead.eof())
-		{
-			data_To_Humans.resize(data_To_Humans.size() + 1);
-			fileRead >> data_To_Humans[countName];
-			countName++;
-		}
-
-		fileRead.close();
-
 		return true;
 	}
+
 
 	void Close()
 	{
@@ -346,7 +324,8 @@ private:
 		vF.close();
 	}
 
-	friend class Face;
+
+	friend class Main_View;
 
 };
 

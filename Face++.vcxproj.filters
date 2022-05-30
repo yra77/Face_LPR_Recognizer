@@ -28,23 +28,23 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="Face.h">
+    <QtMoc Include="Main_View.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="View_Result.h">
+    <QtMoc Include="Views\View_Result.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="View_Image.h">
+    <QtMoc Include="Views\View_Image.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="Face.ui">
+    <QtUic Include="Main_View.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="Face.qrc">
+    <QtRcc Include="Main_View.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
   </ItemGroup>
@@ -52,25 +52,34 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Image_LPR.h">
+    <ClInclude Include="Recognitions\Image_LPR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Symbol_Recog.h">
+    <ClInclude Include="Recognitions\Symbol_Recog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Add_Mouse_Region.h">
+    <ClInclude Include="Views\Add_Region_View.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Write_To_File.h">
+    <ClInclude Include="Recognitions\LPR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LPR.h">
+    <ClInclude Include="Recognitions\FaceDetectRecog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FaceDetectRecog.h">
+    <ClInclude Include="Views\View_Face.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="View_Face.h">
+    <ClInclude Include="Constants\Constant_File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IO_Files\File_R.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IO_Files\File_Create.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IO_Files\File_W.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,45 +6,27 @@
 #pragma once
 
 #include "ui_Face.h"
-#include "LPR.h"
-#include "Image_LPR.h"
-#include "FaceDetectRecog.h"
+#include "Recognitions/LPR.h"
+#include "Recognitions/Image_LPR.h"
+#include "Recognitions/FaceDetectRecog.h"
+#include "IO_Files/File_R.h"
+#include "IO_Files/File_Create.h"
 
-#include "conio.h"
 #include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
 #include <windows.h>
 #include <string>
-#include <thread>
 #include <vector>
-#include <filesystem>
 #include <regex>
 
 #include <QLabel>
 #include <QTextCursor>
 #include <QtWidgets/QMainWindow>
 
-#include <opencv2/opencv.hpp>
-#include <opencv2/core.hpp>
-#include <opencv2/videoio.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/dnn.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/face.hpp>
-#include <opencv2/dnn.hpp>
-#include <opencv2/objdetect/objdetect.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/core/utility.hpp>
 
-
-using namespace cv;
 using namespace std;
-using namespace cv::dnn;
-using namespace cv::face;
 
 
-class Face : public QMainWindow
+class Main_View : public QMainWindow
 {
 	Q_OBJECT
 
@@ -65,14 +47,21 @@ private:
 	bool imageLPrbool = false;
 	QString styleSheet;
 
+
 public:
+
 	int boolFaceCamera = 0;
 
-	Face(string path_EXE, string desctop_Path, QWidget* parent = Q_NULLPTR) : path_EXE(path_EXE), QMainWindow(parent)
+
+	Main_View(QWidget* parent = Q_NULLPTR) : QMainWindow(parent)
 	{
 
 		ui.setupUi(this);
-		desctopPath = desctop_Path;
+
+		desctopPath = File_R::Get_Desctop_Path();
+		path_EXE = File_R::Path_To_Folder();
+		File_Create::CreateFolders(desctopPath);
+		
 		styleSheet = "QPushButton{ background-color: gray; color: black; border-color: cyan;}"
 			         "QPushButton:hover{ border: 2px solid white; background-color: red; color: white}"
 			         "QPushButton:pressed{ border: 2px solid red; background-color: red; color: white}";
@@ -184,8 +173,10 @@ private slots:
 
 	void Close_Button_Click()
 	{
+
 		if (imageLPrbool)
 			 imgLPR.Close();
+
 		if (lpr.IsVisible_LPR())
 		{
 			lpr.state = false;

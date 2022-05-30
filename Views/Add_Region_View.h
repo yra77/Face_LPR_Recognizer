@@ -2,10 +2,10 @@
 #define WIN32_LEAN_AND_MEAN 
 #pragma once
 
-#include "Face.h"
+#include "Main_View.h"
 #include "ui_Face.h"
-#include "LPR.h"
-#include "Image_LPR.h"
+#include "Recognitions/LPR.h"
+#include "Recognitions/Image_LPR.h"
 
 #include <iostream>
 
@@ -17,7 +17,7 @@ using namespace cv;
 using namespace std;
 
 
-class Add_Mouse_Region
+class Add_Region_View
 {
 
 public:
@@ -74,8 +74,8 @@ public:
 				break;
 			}
 
-			rectangle(frame, Rect(Add_Mouse_Region::initX, Add_Mouse_Region::initY, Add_Mouse_Region::actualX - Add_Mouse_Region::initX,
-				             Add_Mouse_Region::actualY - Add_Mouse_Region::initY), Scalar(40, 40, 255), 2);
+			rectangle(frame, Rect(Add_Region_View::initX, Add_Region_View::initY, Add_Region_View::actualX - Add_Region_View::initX,
+				             Add_Region_View::actualY - Add_Region_View::initY), Scalar(40, 40, 255), 2);
 			if (init == 3)
 			{				
 				int i = MessageBox(0, L"Сохранить ?", L"", MB_OKCANCEL | MB_ICONINFORMATION | MB_APPLMODAL);

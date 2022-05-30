@@ -24,6 +24,7 @@ public:
         this->desctopPath = desctopPath;
         countImg = 0;
         this->countName = countName;
+
         this->resize(1000, 600);
         this->setWindowTitle("Detect Face");
 
@@ -90,23 +91,6 @@ public:
     }
 
 
-    virtual ~View_Face()
-    {
-        /*delete layout;
-        delete tableWidget;
-        delete mylabel;
-        delete lineEdit;
-        delete vbox;
-        delete vbox2;
-        delete hbox;
-        delete faceLabel;
-        delete button;
-        delete button1;
-        delete button2;*/
-    }
-
-
-
 private:
     QVBoxLayout* vbox;
     QVBoxLayout* vbox2;
@@ -146,6 +130,7 @@ private:
         QString styleSheet = "QPushButton{ background-color: gray; color: black; border: 2px solid cyan;}"
                              "QPushButton:hover{ border: 2px solid red; background-color: red; color: white}" 
                              "QPushButton:pressed{ border: 2px solid red; background-color: red; color: white}";
+
         button->setStyleSheet(styleSheet);
         button1->setStyleSheet(styleSheet);
         button2->setStyleSheet(styleSheet);
@@ -156,16 +141,20 @@ private:
         lineEdit->setPlaceholderText("Input the name");
         lineEdit->setClearButtonEnabled(true);
         lineEdit->setFocusPolicy(Qt::ClickFocus);
-        lineEdit->setStyleSheet("QLineEdit {background-color: white; border: 2px solid black}" "QLineEdit:hover {background-color: lightgray; border: 2px solid cyan}");
+        lineEdit->setStyleSheet("QLineEdit {background-color: white; border: 2px solid black}" 
+                                "QLineEdit:hover {background-color: lightgray; border: 2px solid cyan}");
     }
 
 
     void ViewFace()
     {
         Mat img_QT;
+
         cv::cvtColor(img_Face[countImg].clone(), img_QT, COLOR_BGR2RGB);
         cv::resize(img_QT, img_QT, Size(275, 260), 0, 0, INTER_LINEAR_EXACT);
+
         qimg = QImage((uchar*)img_QT.data, img_QT.cols, img_QT.rows, img_QT.step, QImage::Format_RGB888);
+
         faceLabel->setPixmap(QPixmap::fromImage(qimg));
     }
 
@@ -196,24 +185,19 @@ private:
     void Save_Button_Click()
     {
        string nameStr = lineEdit->text().toStdString();
-        wofstream fileWrite;
-        fileWrite.open(desctopPath + "Foto Base Recognize/Data_Base_Text/Base.txt", std::ios_base::app);
-        string rassh = ".png";
-        string num0 = to_string(countName - 1);
 
-        if (fileWrite.is_open())
+        if (File_W::Write_TXT(desctopPath + "Foto Base Recognize/Data_Base_Text/Base.txt", nameStr))
         {
-            string probel = " ";
-            string n = "\n";
-            string buf = nameStr + n;
-            fileWrite << buf.c_str();
 
-            fileWrite.close();
-
+            string rassh = ".png";
+            string num0 = to_string(countName - 1);
             string filename = desctopPath + "Foto Base Recognize/Human Base/" + num0 + rassh;
             Mat greyImg;
+
             cvtColor(img_Face[countImg].clone(), greyImg, COLOR_BGR2GRAY);
-            imwrite(filename, greyImg);
+           
+            File_W::Write_PNG(filename, greyImg);
+
             countName++;
         }
         else

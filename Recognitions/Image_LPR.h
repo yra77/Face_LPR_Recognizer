@@ -1,24 +1,21 @@
 
 #define _CRT_SECURE_NO_WARNINGS
-#define NOMINMAX
-#define WIN32_LEAN_AND_MEAN 
 
 #pragma once
 
-#include "Symbol_Recog.h"
-#include "Face.h"
-#include "View_Image.h"
+#include "Recognitions/Symbol_Recog.h"
+#include "Main_View.h"
+#include "Views/View_Image.h"
+#include "IO_Files/File_R.h"
 
+#include <windows.h>
+#include <Commdlg.h>
 #include <fstream>
 #include <algorithm>
-#include <windows.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include <vector>
 #include <sstream>
 #include <iostream>
-#include <Commdlg.h>
 
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
@@ -50,19 +47,25 @@ public:
 
 		Net net = cv::dnn::readNetFromCaffe(caffeConfig_Proto, caffeWeight_Model);
 
-		string fileName = Open_File_Dialog();
+		string fileName = GetImageFile();
+		
 		if (fileName.empty())
 			return;
+
 		vector < pair<Point, Mat>> plate;
-		Mat frame = imread(fileName, IMREAD_COLOR);
+
+		Mat frame = File_R::Read_Png_Color(fileName);
 
 		if (!frame.empty())
 		{
 
-			Detecting_LPR(net, frame, plate);
+		    Detecting_LPR(net, frame, plate);
+
 			sR.Start(this->pathEXE, 0.35f);
+
 			std::pair<string, float> result;
 			string res;
+
 			//Point x;
 			for (int i = 0; i < plate.size(); i++)
 			{
@@ -160,31 +163,12 @@ private:
 	}
 
 
-	string Open_File_Dialog()
+	string GetImageFile()
 	{
-		OPENFILENAME ofn = { 0 };
-		TCHAR szFile[260] = { 0 };
-
-		// Initialize remaining fields of OPENFILENAME structure
-		ofn.lStructSize = sizeof(ofn);
-		ofn.hwndOwner = NULL;
-		ofn.lpstrFile = szFile;
-		ofn.nMaxFile = sizeof(szFile);
-		ofn.lpstrFilter = L"Image Files (*.png, *.jpg, *.jpeg)\0*.png;*.jpg;*.jpeg\0;";
-		ofn.nFilterIndex = 1;
-		ofn.lpstrFileTitle = NULL;
-		ofn.nMaxFileTitle = 0;
-		ofn.lpstrInitialDir = NULL;
-		ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 
 		std::string fileName;
 
-		if (GetOpenFileName(&ofn) == TRUE)
-		{
-			std::wstring arr_w(szFile);
-			fileName = std::string(arr_w.begin(), arr_w.end());
-		}
-		else
+		if (!File_R::OpenFileDialog(L"Image Files (*.png, *.jpg, *.jpeg)\0*.png;*.jpg;*.jpeg\0;", fileName))
 		{
 			MessageBox(0, L"ERROR file read", L"", MB_OK | MB_ICONERROR | MB_APPLMODAL);
 		}
